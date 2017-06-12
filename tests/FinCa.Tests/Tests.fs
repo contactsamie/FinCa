@@ -20,3 +20,14 @@ let ``calculate Net Worth`` (owing:float,payCheck:float) =
   }
   let netWorth = calculateNetWorth compositeBill
   Assert.AreEqual(payCheck - owing,netWorth)
+
+
+[<Property( Verbose = true )>]
+let ``calculate Net Worth 2`` (owing:Bill,payCheck:Bill) =
+
+  let compositeBill = {
+    Bills =
+      [| owing; payCheck |] 
+  }
+  let netWorth = calculateNetWorth compositeBill
+  Assert.AreEqual(payCheck.Amount - owing.Amount,netWorth)
