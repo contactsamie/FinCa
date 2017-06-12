@@ -1,8 +1,11 @@
 module FinCa.Tests
 
+System.IO.Directory.SetCurrentDirectory (__SOURCE_DIRECTORY__)
+
 open FinCa
 open NUnit.Framework
 open FinCa.Library
+open FsCheck
 
 [<Test>]
 let ``calculate Net Worth`` () =
