@@ -6,12 +6,11 @@ open FinCa
 open NUnit.Framework
 open FinCa.Library
 open FsCheck
+open FsCheck.NUnit
 
-[<Test>]
-let ``calculate Net Worth`` () =
-  let owing = 10.0
-  let payCheck = 20.0
-  
+[<Property( Verbose = true )>]
+let ``calculate Net Worth`` (owing:float,payCheck:float) =
+
   let compositeBill = {
     Bills =
       [| 
