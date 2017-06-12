@@ -8,6 +8,21 @@ open FinCa.Library
 open FsCheck
 open FsCheck.NUnit
 
+(*
+type BillsGen =
+    static member Bill () =        
+        let debit = 
+          Arb.generate<Bill>
+          |> Gen.map (fun dt -> { dt with Direction = Out} )          
+        let credit = 
+          Arb.generate<Bill>
+          |> Gen.map (fun dt -> { dt with Direction = In} )
+        Gen.oneof[ debit; credit ]        
+
+[<SetUp>]
+let setup () =
+    do Arb.register<BillsGen>() |> ignore 
+*)
 [<Property( Verbose = true )>]
 let ``calculate Net Worth`` (owing:float,payCheck:float) =
 
@@ -23,11 +38,28 @@ let ``calculate Net Worth`` (owing:float,payCheck:float) =
 
 
 [<Property( Verbose = true )>]
-let ``calculate Net Worth 2`` (owing:Bill,payCheck:Bill) =
+let ``calculate Net Worth 2`` (first:Bill,second:Bill) =
+  let owing = { first with Direction = Out }
+  let payCheck = { second with Direction = In }
 
   let compositeBill = {
-    Bills =
-      [| owing; payCheck |] 
+    Bills = [| owing; payCheck |] 
   }
   let netWorth = calculateNetWorth compositeBill
   Assert.AreEqual(payCheck.Amount - owing.Amount,netWorth)
+
+(*
+
+[<Property( Verbose = true )>]
+let ``calculate Net Worth 2`` (owing:Bill,payCheck:Bill) =
+
+  let compositeBill = {
+    Bills = [| owing; payCheck |] 
+  }
+  let netWorth = calculateNetWorth compositeBill
+  Assert.AreEqual(payCheck.Amount - owing.Amount,netWorth)
+
+*)
+
+
+
