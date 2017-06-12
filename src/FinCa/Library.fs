@@ -1,5 +1,8 @@
 namespace FinCa
 
+open FSharp.Data
+open FSharp.Data.CsvExtensions
+
 module Library = 
   
   type Direction = 
@@ -45,7 +48,7 @@ module Library =
      Importance = UnKnownImportance
      Schedule = UnknownSchedule
   }
-
+(*##################################################################################################################*)
   let calculateNetWorth bills = 
     let credit =
       bills.Bills 
@@ -58,3 +61,5 @@ module Library =
       |> Array.map(fun o -> o.Amount)
       |> Array.reduce(+)    
     credit - debit
+
+  
