@@ -1,4 +1,4 @@
-﻿namespace FSharp.ProjectTemplate
+namespace FinCa
 
 /// Documentation for my library
 ///

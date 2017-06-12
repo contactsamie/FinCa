@@ -1,0 +1,25 @@
+type project
+title
+    FinCa
+owners
+    Samuel
+authors 
+    Samuel
+projectUrl
+    https://github.com/contactsamie/FinCa/constactsamie/FinCa
+iconUrl
+    https://raw.githubusercontent.com/constactsamie/FinCa/master/docs/files/img/logo.png
+licenseUrl
+    https://github.com/contactsamie/FinCa/constactsamie/FinCa/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+copyright
+    Copyright 2015
+tags
+    fsharp
+summary
+    Personal Financial App
+description
+    Personal Financial App
+
+

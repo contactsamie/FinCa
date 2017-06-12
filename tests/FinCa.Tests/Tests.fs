@@ -1,6 +1,6 @@
-﻿module FSharp.ProjectScaffold.Tests
+module FinCa.Tests
 
-open FSharp.ProjectTemplate
+open FinCa
 open NUnit.Framework
 
 [<Test>]

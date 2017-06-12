@@ -23,7 +23,7 @@ NUGET
       Microsoft.Net.Http  - framework: net10, net11, net20, net30, net35, net40, net40-full
 GITHUB
   remote: fsharp/FAKE
-    modules/Octokit/Octokit.fsx (ad65548e62c35ad64ad1f9db6f5768330bc06594)
+    modules/Octokit/Octokit.fsx (223c4127470255dc144c2fe95bb5a577d0a1ad82)
       Octokit (>= 0.20)
 GROUP Test
 NUGET
