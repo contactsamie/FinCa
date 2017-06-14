@@ -1,7 +1,5 @@
 namespace FinCa
 
-open FSharp.Data
-open FSharp.Data.CsvExtensions
 
 module Library = 
   
@@ -33,7 +31,7 @@ module Library =
      Importance : Importance
      Schedule : Schedule
   }
-
+  
   type CompositeBill = {
     Bills : Bill [] 
   }
@@ -62,4 +60,4 @@ module Library =
       |> Array.reduce(+)    
     credit - debit
 
-  
+  //let toFloat s = float.Parse(s, CultureInfo.InvariantCulture.NumberFormat);

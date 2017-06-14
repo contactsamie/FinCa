@@ -1,2 +1,2 @@
-﻿High,Low,Date
-paycheck,500,in
+﻿Name,Amount,Direction,Schedule,Importance
+paycheck,500,In,Monthly,Ok
