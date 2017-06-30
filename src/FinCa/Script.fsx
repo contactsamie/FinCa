@@ -12,9 +12,9 @@ open System
 //let  file =  "/report.csv"
 type DataSet =  
   CsvProvider<
-    "report.csv",
+    "c:\\\\report.csv",
     HasHeaders = true ,
-    Schema = "Name,Amount,Direction,Schedule,Importance"
+    Schema = "Name,Amount (decimal),Direction,Schedule,Importance"
     >
 
 let report = DataSet.Load("report.csv")
@@ -25,7 +25,7 @@ let bills =
        { 
          Name = row.Name
          Amount = Money row.Amount
-         Direction =  Direction.fromString  row.Direction
+         Direction =  Direction.fromString row.Direction
          Schedule =  Schedule.fromString row.Schedule
          Importance =  Importance.fromString row.Importance
          Subject = None
@@ -41,7 +41,7 @@ let adjustment = {
   Subject = None
   Amount = Money 0.0m
 }
-let billsObj = { Bills =  billAdjust bills adjustment   }
+let billsObj = { Bills =  billAdjust bills [ adjustment ]   }
 //let worth = calculateNetWorth billsObj
 let daysPeriod =  Yearly  |> Some |> toDays
 let monthWorth = getRecomendation billsObj daysPeriod

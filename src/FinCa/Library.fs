@@ -189,11 +189,15 @@ module Library =
     credit - debit
 
 
-  let billAdjust bills adjustment =    
+  let billAdjust bills (adjustments:Bill list) =       
       bills 
       |> Array.map(fun b -> 
-         if b.Name = adjustment.Name then
-          adjustment
+         if adjustments.IsEmpty then 
+           b 
          else
-           b
+           let items = adjustments |> List.filter(fun o -> o.Name=b.Name) 
+           if  items.IsEmpty then
+            b
+           else
+            items.Head
         )
