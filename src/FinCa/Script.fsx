@@ -7,24 +7,41 @@
 open FinCa.Library
 open FSharp.Data
 open FSharp.Data.CsvExtensions
+open System
 
-let report = CsvFile.Load(__SOURCE_DIRECTORY__ + "/report.csv")
+//let  file =  "/report.csv"
+type DataSet =  
+  CsvProvider<
+    "report.csv",
+    HasHeaders = true ,
+    Schema = "Name,Amount,Direction,Schedule,Importance"
+    >
 
-// Print the prices in the HLOC format
+let report = DataSet.Load("report.csv")
 
-let r= 
+let bills =
   report.Rows 
-   |> Seq.map(fun row -> 
-     (row.GetColumn "Name"),
-     (row.GetColumn "Amount"),
-     (row.GetColumn "Direction"),
-     (row.GetColumn "Schedule"),
-     (row.GetColumn "Importance")
-    )
-   |> Seq.map(fun (a,b,c,d,e) -> 
-        printfn "HLOC: (%s, %s, %s, %s, %s)" a b c d e
-        (a ,b :?> float ,c :?> Direction ,d :?> Schedule ,e :?> Importance)
-     )
+   |>  Seq.map(fun row ->
+       { 
+         Name = row.Name
+         Amount = Money row.Amount
+         Direction =  Direction.fromString  row.Direction
+         Schedule =  Schedule.fromString row.Schedule
+         Importance =  Importance.fromString row.Importance
+         Subject = None
+       }
+      )
    |> Array.ofSeq
 
-
+let adjustment = { 
+  Name = "paycheck" 
+  Schedule = Some Weekly
+  Direction = Some Direction.In
+  Importance = None
+  Subject = None
+  Amount = Money 0.0m
+}
+let billsObj = { Bills =  billAdjust bills adjustment   }
+//let worth = calculateNetWorth billsObj
+let daysPeriod =  Yearly  |> Some |> toDays
+let monthWorth = getRecomendation billsObj daysPeriod

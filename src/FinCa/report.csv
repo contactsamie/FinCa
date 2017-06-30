@@ -1,2 +1,4 @@
 ﻿Name,Amount,Direction,Schedule,Importance
-paycheck,500,In,Monthly,Ok
+paycheck,500.00,In,BiWeekly,
+food,250.00,Out,Weekly,
+misc,1000,Out,Monthly,
